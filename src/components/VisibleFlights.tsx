@@ -5,6 +5,7 @@ import { getVisibleFlights } from '../reducers';
 import { loadData } from '../actions';
 import { useLocation } from 'react-router-dom';
 import { Departure, Arrival } from '../utils/flightsTypes';
+import Flight from './Flight';
 
 const VisibleFlights: FC<ConnectedProps<typeof connector>> = ({
   flights,
@@ -40,7 +41,9 @@ const VisibleFlights: FC<ConnectedProps<typeof connector>> = ({
         <tr>{thList}</tr>
       </thead>
       <tbody>
-        {(flights as Array<Arrival | Departure>).map((flight) => {})}
+        {(flights as Array<Arrival | Departure>).map((flight) => (
+          <Flight key={flight.ID} flight={flight} />
+        ))}
       </tbody>
     </table>
   );

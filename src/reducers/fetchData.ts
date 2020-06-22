@@ -15,17 +15,32 @@ export default (state: IFetchData = initialState, action: Actions) => {
     case ActionTypes.RECEIVED_DATA:
       const { flights, direction, date } = action;
       const arrival = direction === 'arrival';
+      const currentDay = new Date(date).getDate();
+
       return {
         ...state,
         flights: {
-          [arrival ? 'arrival' : 'departure']: [
-            ...flights.body[arrival ? 'arrival' : 'departure'],
-          ].filter((flight) => {
-            const currentDay = new Date(date).getDate();
-            const flightDay = new Date(flight.actual).getDate();
+          arrival: [...flights.body.arrival]
+            .filter((flight) => {
+              const flightDay = new Date(flight.timeToStand).getDate();
 
-            return currentDay === flightDay;
-          }),
+              return currentDay === flightDay;
+            })
+            .sort((a, b) => {
+              return Date.parse(a.timeToStand) - Date.parse(b.timeToStand);
+            }),
+          departure: [...flights.body.departure]
+            .filter((flight) => {
+              const flightDay = new Date(flight.timeDepExpectCalc).getDate();
+
+              return currentDay === flightDay;
+            })
+            .sort((a, b) => {
+              return (
+                Date.parse(a.timeDepExpectCalc) -
+                Date.parse(b.timeDepExpectCalc)
+              );
+            }),
         },
         direction: arrival ? 'arrival' : 'departure',
         fetching: false,
