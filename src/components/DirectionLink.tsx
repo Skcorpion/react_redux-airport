@@ -10,9 +10,12 @@ const DirectionLink: FC<Props> = ({ direction, children }) => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const date = searchParams.get('date') || '';
+  const query = searchParams.get('query') || '';
 
   return (
-    <NavLink to={`/${direction}s${date ? `?date=${date}` : ''}`}>
+    <NavLink
+      to={`/${direction}s${date || query ? `?${searchParams.toString()}` : ''}`}
+    >
       {children}
     </NavLink>
   );
