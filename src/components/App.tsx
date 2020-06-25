@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import './App.css';
 import Direction from './Direction';
 import VisibleFlights from './VisibleFlights';
-import DatePicker from './DatePicker';
+import FlightDate from './FlightDate';
 import SearchField from './SearchField';
 
 const App: FC = () => {
@@ -10,7 +10,7 @@ const App: FC = () => {
     <div>
       <SearchField />
       <Direction />
-      <DatePicker />
+      <FlightDate />
       <VisibleFlights />
     </div>
   );
