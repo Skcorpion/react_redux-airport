@@ -7,8 +7,6 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import LuxonUtils from '@date-io/luxon';
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 const store = createStore(
   rootReducer,
@@ -18,12 +16,10 @@ const store = createStore(
 ReactDOM.render(
   <BrowserRouter>
     <Provider store={store}>
-      <MuiPickersUtilsProvider utils={LuxonUtils}>
-        <Switch>
-          <Route path="/arrivals" component={App} />
-          <Route path="/departures" component={App} />
-        </Switch>
-      </MuiPickersUtilsProvider>
+      <Switch>
+        <Route path="/arrivals" component={App} />
+        <Route path="/departures" component={App} />
+      </Switch>
     </Provider>
   </BrowserRouter>,
   document.getElementById('root')
