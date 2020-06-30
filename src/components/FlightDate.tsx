@@ -10,9 +10,13 @@ function reverseDate(date: string | null) {
   }
   return new Date();
 }
-
 function stringifyDate(date: Date) {
   return date.toLocaleDateString().split('.').join('-');
+}
+function calendarDate(date: Date) {
+  return date
+    .toLocaleDateString([], { month: 'numeric', day: 'numeric' })
+    .replace('.', '/');
 }
 
 const FlightDate: FC = () => {
@@ -22,19 +26,14 @@ const FlightDate: FC = () => {
   const [selectedDate, handleDateChange] = useState(
     reverseDate(searchParams.get('date'))
   );
-  const setDateParams = (date: string) => {
-    handleDateChange(reverseDate(date));
+  const setDateParams = (date: Date) => {
+    handleDateChange(reverseDate(stringifyDate(date)));
   };
   const getDateToParams = (day: number) => {
     const date = new Date();
     date.setDate(date.getDate() + day);
 
-    return stringifyDate(date);
-  };
-  const calendarDate = (date: Date) => {
-    return date
-      .toLocaleDateString([], { month: 'numeric', day: 'numeric' })
-      .replace('.', '/');
+    return date;
   };
 
   useEffect(() => {
@@ -49,35 +48,50 @@ const FlightDate: FC = () => {
   console.log(selectedDate);
 
   return (
-    <>
+    <div className="flights-dates__container">
       <DatePicker
         selected={selectedDate}
         onChange={(date: Date) => handleDateChange(date)}
         customInput={
-          <div className="flights-calendar-container">
-            <div className="flights-datepicker ">
+          <div className="flights-calendar__container">
+            <div className="flights-calendar__datepicker">
               <input
                 type="text"
                 readOnly
-                className="datepicker-input"
+                className="flights-calendar__input"
                 value={calendarDate(selectedDate)}
               />
             </div>
           </div>
         }
       />
-      <div>
-        <DateLink setDateParams={setDateParams} date={getDateToParams(-1)}>
+      <div className="flights-dates__list">
+        <DateLink
+          selectedDate={selectedDate}
+          calendarDate={calendarDate}
+          setDateParams={setDateParams}
+          date={getDateToParams(-1)}
+        >
           Yesterday
         </DateLink>
-        <DateLink setDateParams={setDateParams} date={getDateToParams(0)}>
+        <DateLink
+          selectedDate={selectedDate}
+          calendarDate={calendarDate}
+          setDateParams={setDateParams}
+          date={getDateToParams(0)}
+        >
           Today
         </DateLink>
-        <DateLink setDateParams={setDateParams} date={getDateToParams(1)}>
+        <DateLink
+          selectedDate={selectedDate}
+          calendarDate={calendarDate}
+          setDateParams={setDateParams}
+          date={getDateToParams(1)}
+        >
           Tomorrow
         </DateLink>
       </div>
-    </>
+    </div>
   );
 };
 

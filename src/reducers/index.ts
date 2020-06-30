@@ -12,6 +12,8 @@ export const rootReducer = combineReducers({
 //selector
 export const getFlights = (state: RootState) =>
   fromFetchData.getFlights(state.fetchData);
+export const getFetching = (state: RootState) =>
+  fromFetchData.getFetching(state.fetchData);
 export const getDirection = (state: RootState) =>
   fromFetchData.getDirection(state.fetchData);
 

@@ -3,10 +3,10 @@ import DirectionLink from './DirectionLink';
 
 const Direction: FC = () => {
   return (
-    <p>
+    <div className="flights-tabs">
       <DirectionLink direction={'departure'}>departures</DirectionLink>
       <DirectionLink direction={'arrival'}>arrivals</DirectionLink>
-    </p>
+    </div>
   );
 };
 

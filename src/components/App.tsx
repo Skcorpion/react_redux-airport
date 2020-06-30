@@ -7,7 +7,7 @@ import SearchField from './SearchField';
 
 const App: FC = () => {
   return (
-    <div>
+    <div className="flights__container">
       <SearchField />
       <Direction />
       <FlightDate />

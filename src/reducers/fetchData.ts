@@ -53,4 +53,5 @@ export default (state: IFetchData = initialState, action: Actions) => {
 
 //selector
 export const getFlights = (state: IFetchData) => state.flights;
+export const getFetching = (state: IFetchData) => state.fetching;
 export const getDirection = (state: IFetchData) => state.direction;

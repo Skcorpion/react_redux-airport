@@ -2,11 +2,8 @@ import React, { FC, useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { connect, ConnectedProps } from 'react-redux';
 import { setFilteredQuery } from '../actions';
-import { getFilteredQuery } from '../reducers';
-import { RootState } from '../utils/interfaces';
 
 const SearchField: FC<ConnectedProps<typeof connector>> = ({
-  filteredQuery,
   setFilteredQuery,
 }) => {
   const history = useHistory();
@@ -43,21 +40,26 @@ const SearchField: FC<ConnectedProps<typeof connector>> = ({
   };
 
   return (
-    <div>
-      <h1>SEARCH FLIGHT</h1>
-      <input
-        type="text"
-        placeholder="Airline, destination or flight #"
-        value={visibleQuery}
-        onChange={handleQueryUpdate}
-      />
-      <button onClick={handleButtonQueryUpdate}>Search</button>
+    <div className="flights__search-field search-field">
+      <h2 className="search-field__title">SEARCH FLIGHT</h2>
+      <div className="search-field__search-line">
+        <input
+          className="search-field__input"
+          type="text"
+          placeholder="Airline, destination or flight #"
+          value={visibleQuery}
+          onChange={handleQueryUpdate}
+        />
+        <button
+          className="search-field__button"
+          onClick={handleButtonQueryUpdate}
+        >
+          Search
+        </button>
+      </div>
     </div>
   );
 };
 
-const mapStateToProps = (state: RootState) => ({
-  filteredQuery: getFilteredQuery(state),
-});
-const connector = connect(mapStateToProps, { setFilteredQuery });
+const connector = connect(null, { setFilteredQuery });
 export default connector(SearchField);

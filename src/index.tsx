@@ -14,13 +14,15 @@ const store = createStore(
 );
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Provider store={store}>
-      <Switch>
-        <Route path="/arrivals" component={App} />
-        <Route path="/departures" component={App} />
-      </Switch>
-    </Provider>
-  </BrowserRouter>,
+  <React.StrictMode>
+    <BrowserRouter>
+      <Provider store={store}>
+        <Switch>
+          <Route path="/arrivals" component={App} />
+          <Route path="/departures" component={App} />
+        </Switch>
+      </Provider>
+    </BrowserRouter>
+  </React.StrictMode>,
   document.getElementById('root')
 );

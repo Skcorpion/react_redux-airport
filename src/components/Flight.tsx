@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { Arrival, Departure } from '../utils/flightsTypes';
+import classNames from 'classnames';
 
 type Props = {
   flight: Arrival | Departure;
@@ -42,6 +43,10 @@ const Flight: FC<Props> = ({ flight }) => {
     }
 
     status = status === 'DP' ? 'Departed at' : status;
+    if (status === 'DV') {
+      status = 'Route change';
+      actual = '';
+    }
   }
 
   status = status === 'CX' ? 'Cancelled' : status;
@@ -49,11 +54,18 @@ const Flight: FC<Props> = ({ flight }) => {
   status = status === 'CK' ? 'Check-in' : status;
   status = status === 'ON' ? 'On time' : status;
   status = status === 'FR' ? 'In flight' : status;
+
   const preparedLocalTime = toTimeString(localTime);
 
   return (
     <tr>
-      <td>{term}</td>
+      <td
+        className={classNames('flights-table__terminal-col', {
+          blue: term === 'D',
+        })}
+      >
+        <span>{term}</span>
+      </td>
       <td>{preparedLocalTime}</td>
       <td>{destination}</td>
       <td>{`${status} ${actual}`}</td>

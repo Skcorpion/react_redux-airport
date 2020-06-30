@@ -3,7 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 
 type Props = {
   direction: string;
-  children: React.ReactNode;
+  children: string;
 };
 
 const DirectionLink: FC<Props> = ({ direction, children }) => {
@@ -14,6 +14,14 @@ const DirectionLink: FC<Props> = ({ direction, children }) => {
 
   return (
     <NavLink
+      className="flights-tabs__tab"
+      activeClassName="flights-tabs__tab_active"
+      isActive={() => {
+        if (location.pathname.includes(children)) {
+          return true;
+        }
+        return false;
+      }}
       to={`/${direction}s${date || query ? `?${searchParams.toString()}` : ''}`}
     >
       {children}

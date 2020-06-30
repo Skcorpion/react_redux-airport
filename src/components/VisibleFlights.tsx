@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { ConnectedProps, connect } from 'react-redux';
 import { RootState } from '../utils/interfaces';
-import { getVisibleFlights } from '../reducers';
+import { getVisibleFlights, getFetching } from '../reducers';
 import { loadData } from '../actions';
 import { useLocation } from 'react-router-dom';
 import { Departure, Arrival } from '../utils/flightsTypes';
@@ -9,6 +9,7 @@ import Flight from './Flight';
 
 const VisibleFlights: FC<ConnectedProps<typeof connector>> = ({
   flights,
+  fetching,
   loadData,
 }) => {
   const location = useLocation();
@@ -35,22 +36,30 @@ const VisibleFlights: FC<ConnectedProps<typeof connector>> = ({
     'Flight',
   ];
   const thList = listOfHeads.map((head, i) => <th key={i}>{head}</th>);
+  if (flights.length !== 0) {
+    return (
+      <table className="flights-table">
+        <thead>
+          <tr>{thList}</tr>
+        </thead>
+        <tbody>
+          {(flights as Array<Arrival | Departure>).map((flight) => (
+            <Flight key={flight.ID} flight={flight} />
+          ))}
+        </tbody>
+      </table>
+    );
+  }
   return (
-    <table>
-      <thead>
-        <tr>{thList}</tr>
-      </thead>
-      <tbody>
-        {(flights as Array<Arrival | Departure>).map((flight) => (
-          <Flight key={flight.ID} flight={flight} />
-        ))}
-      </tbody>
-    </table>
+    <div className="nothing-found">
+      {fetching ? <span>Loading</span> : <span>No flights</span>}
+    </div>
   );
 };
 
 const mapStateToProps = (state: RootState) => ({
   flights: getVisibleFlights(state),
+  fetching: getFetching(state),
 });
 
 const connector = connect(mapStateToProps, { loadData });
