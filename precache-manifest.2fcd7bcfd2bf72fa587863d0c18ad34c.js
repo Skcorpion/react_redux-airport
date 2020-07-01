@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "93886d0d4885c0cb62ea33ca8e2f0489",
+    "revision": "84049b513174bead8b5fb6495da2d537",
     "url": "/react_redux-airport/arrivals/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react_redux-airport/arrivals/static/css/2.a1b7a17e.chunk.css"
   },
   {
-    "revision": "5f79c36e67bcb61325fa",
+    "revision": "65501aa23054b60794fc",
     "url": "/react_redux-airport/arrivals/static/css/main.a5623686.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react_redux-airport/arrivals/static/js/2.ce84cb43.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "5f79c36e67bcb61325fa",
-    "url": "/react_redux-airport/arrivals/static/js/main.44c8fc9b.chunk.js"
+    "revision": "65501aa23054b60794fc",
+    "url": "/react_redux-airport/arrivals/static/js/main.ea343c3f.chunk.js"
   },
   {
     "revision": "0dc7ff3a58012c2a2c5a",
