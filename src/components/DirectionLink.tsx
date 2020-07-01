@@ -2,11 +2,10 @@ import React, { FC } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 
 type Props = {
-  direction: string;
   children: string;
 };
 
-const DirectionLink: FC<Props> = ({ direction, children }) => {
+const DirectionLink: FC<Props> = ({ children }) => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const date = searchParams.get('date') || '';
@@ -22,7 +21,7 @@ const DirectionLink: FC<Props> = ({ direction, children }) => {
         }
         return false;
       }}
-      to={`/${direction}s${date || query ? `?${searchParams.toString()}` : ''}`}
+      to={`/${children}${date || query ? `?${searchParams.toString()}` : ''}`}
     >
       {children}
     </NavLink>

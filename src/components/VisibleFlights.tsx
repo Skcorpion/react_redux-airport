@@ -3,7 +3,7 @@ import { ConnectedProps, connect } from 'react-redux';
 import { RootState } from '../utils/interfaces';
 import { getVisibleFlights, getFetching } from '../reducers';
 import { loadData } from '../actions';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { Departure, Arrival } from '../utils/flightsTypes';
 import Flight from './Flight';
 
@@ -13,7 +13,8 @@ const VisibleFlights: FC<ConnectedProps<typeof connector>> = ({
   loadData,
 }) => {
   const location = useLocation();
-  const pathname = location.pathname.replace(/\//, '').replace(/e?s\b/, '');
+  const params: { direction: string } = useParams();
+  const pathname = params.direction.replace(/e?s\b/, '');
   const searchParams = new URLSearchParams(location.search);
 
   const currentDate = new Date().toLocaleDateString().split('.').join('-');

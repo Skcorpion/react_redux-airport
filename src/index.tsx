@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 
 const store = createStore(
   rootReducer,
@@ -15,14 +15,13 @@ const store = createStore(
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Provider store={store}>
+    <Provider store={store}>
+      <HashRouter>
         <Switch>
-          <Route path="/arrivals" component={App} />
-          <Route path="/departures" component={App} />
+          <Route exact path="/:direction" component={App} />
         </Switch>
-      </Provider>
-    </BrowserRouter>
+      </HashRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
