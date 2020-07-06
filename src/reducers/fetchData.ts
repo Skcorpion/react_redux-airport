@@ -3,7 +3,7 @@ import { IFetchData } from '../utils/interfaces';
 
 const initialState: IFetchData = {
   flights: { arrival: [], departure: [] },
-  direction: '',
+  direction: null,
   fetching: false,
 };
 
@@ -14,9 +14,7 @@ export default (state: IFetchData = initialState, action: Actions) => {
 
     case ActionTypes.RECEIVED_DATA:
       const { flights, direction, date } = action;
-      const arrival = direction === 'arrival';
       const currentDay = new Date(date).getDate();
-
       return {
         ...state,
         flights: {
@@ -42,7 +40,7 @@ export default (state: IFetchData = initialState, action: Actions) => {
               );
             }),
         },
-        direction: arrival ? 'arrival' : 'departure',
+        direction,
         fetching: false,
       };
 

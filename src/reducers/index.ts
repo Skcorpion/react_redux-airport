@@ -1,4 +1,4 @@
-import { RootState } from '../utils/interfaces';
+import { RootState, DirectionTypes } from '../utils/interfaces';
 import { createSelector } from 'reselect';
 import sortReducer, * as fromSort from './sortReducer';
 import fetchData, * as fromFetchData from './fetchData';
@@ -25,7 +25,7 @@ export const getVisibleFlights = createSelector(
   (flights, direction, filteredQuery) => {
     const pattern = new RegExp(filteredQuery, 'i');
 
-    if (direction === 'departure') {
+    if (direction === DirectionTypes.DEPARTURE) {
       return [
         ...flights.departure.filter(
           (flight) =>
@@ -34,7 +34,7 @@ export const getVisibleFlights = createSelector(
             pattern.test(flight.airline.en.name)
         ),
       ];
-    } else if (direction === 'arrival') {
+    } else if (direction === DirectionTypes.ARRIVAL) {
       return [
         ...flights.arrival.filter(
           (flight) =>

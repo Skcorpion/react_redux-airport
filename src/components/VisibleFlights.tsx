@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import { ConnectedProps, connect } from 'react-redux';
-import { RootState } from '../utils/interfaces';
+import { RootState, DirectionTypes } from '../utils/interfaces';
 import { getVisibleFlights, getFetching } from '../reducers';
 import { loadData } from '../actions';
 import { useLocation, useParams } from 'react-router-dom';
@@ -14,7 +14,12 @@ const VisibleFlights: FC<ConnectedProps<typeof connector>> = ({
 }) => {
   const location = useLocation();
   const params: { direction: string } = useParams();
-  const pathname = params.direction.replace(/e?s\b/, '');
+  const pathname =
+    params.direction === 'arrivals'
+      ? DirectionTypes.ARRIVAL
+      : params.direction === 'departures'
+      ? DirectionTypes.DEPARTURE
+      : null;
   const searchParams = new URLSearchParams(location.search);
 
   const currentDate = new Date().toLocaleDateString().split('.').join('-');

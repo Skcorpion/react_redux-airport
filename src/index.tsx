@@ -18,7 +18,7 @@ ReactDOM.render(
     <Provider store={store}>
       <HashRouter>
         <Switch>
-          <Route exact path="/:direction" component={App} />
+          <Route path="/:direction" component={App} />
         </Switch>
       </HashRouter>
     </Provider>

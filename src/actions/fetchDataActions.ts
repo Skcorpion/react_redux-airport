@@ -2,6 +2,7 @@ import { Actions, ActionTypes } from '../utils/actionTypes';
 import { IFlights } from '../utils/flightsTypes';
 import { Dispatch } from 'react';
 import { getFlightsFromServer } from '../api';
+import { IDirection } from '../utils/interfaces';
 
 /*
  * action creators
@@ -11,7 +12,7 @@ const requestingData = (): Actions => ({
 });
 const receivedData = (
   flights: IFlights,
-  direction: string,
+  direction: IDirection,
   date: string
 ): Actions => ({
   type: ActionTypes.RECEIVED_DATA,
@@ -20,7 +21,7 @@ const receivedData = (
   date,
 });
 
-export const loadData = (date: string, direction: string) => {
+export const loadData = (date: string, direction: IDirection) => {
   return async function (dispatch: Dispatch<Actions>) {
     dispatch(requestingData());
 

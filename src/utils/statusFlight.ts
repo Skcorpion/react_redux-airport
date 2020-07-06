@@ -1,4 +1,4 @@
-export const statusFlight = (status: Status): string => {
+export const statusFlight = (status: IStatus): string => {
   switch (status) {
     case 'ON':
       return 'On time';

@@ -1,4 +1,5 @@
 import { IFlights } from './flightsTypes';
+import { IDirection } from './interfaces';
 
 /*
  * action types
@@ -17,7 +18,7 @@ interface RequestingDataAction {
 interface ReceivedDataAction {
   type: typeof ActionTypes.RECEIVED_DATA;
   flights: IFlights;
-  direction: string;
+  direction: IDirection;
   date: string;
 }
 interface SetFilteredQueryAction {

@@ -36,7 +36,7 @@ export interface Arrival {
   bagWeigth: number;
   note?: string;
   actual: string;
-  status: Status;
+  status: IStatus;
   'airportFromID.name_en': string;
   'airportFromID.city': string;
   'airportFromID.city_en': string;
@@ -116,7 +116,7 @@ export interface Departure {
   'handlerID.code': string;
   'handlerID.name': string;
   actual: string;
-  status: Status;
+  status: IStatus;
   'airportToID.name_en': string;
   'airportToID.city': string;
   'airportToID.city_en': string;
