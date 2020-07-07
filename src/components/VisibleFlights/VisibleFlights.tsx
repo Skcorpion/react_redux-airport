@@ -1,11 +1,12 @@
 import React, { FC, useEffect } from 'react';
 import { ConnectedProps, connect } from 'react-redux';
-import { RootState, DirectionTypes } from '../utils/interfaces';
-import { getVisibleFlights, getFetching } from '../reducers';
-import { loadData } from '../actions';
+import { RootState, DirectionTypes } from '../../utils/interfaces';
+import { getVisibleFlights, getFetching } from '../../reducers';
+import { loadData } from '../../actions';
 import { useLocation, useParams } from 'react-router-dom';
-import { Departure, Arrival } from '../utils/flightsTypes';
+import { Departure, Arrival } from '../../utils/flightsTypes';
 import Flight from './Flight';
+import './VisibleFlights.scss';
 
 const VisibleFlights: FC<ConnectedProps<typeof connector>> = ({
   flights,

@@ -1,0 +1,47 @@
+@import '../assets/variables';
+
+//Main styles
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: $bg;
+  color: #2f2f2f;
+  margin: 0;
+  text-align: left;
+}
+
+button,
+input {
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+// Flights Container
+
+.flights__container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@include mediaMedium {
+  .flights__container {
+    max-width: 100%;
+    padding: 0;
+  }
+}
+@include mediaLarge {
+  .flights__container {
+    max-width: 1140px;
+  }
+}

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import { Arrival, Departure } from '../utils/flightsTypes';
+import { Arrival, Departure } from '../../utils/flightsTypes';
 import classNames from 'classnames';
-import { statusFlight } from '../utils/statusFlight';
+import { statusFlight } from '../../utils/statusFlight';
 
 type Props = {
   flight: Arrival | Departure;

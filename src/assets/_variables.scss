@@ -1,0 +1,25 @@
+$bg: #e7efec;
+$main-color: #1eb7ee;
+$main-color-light: #73d2f0;
+$term-a: #63c745;
+
+@mixin easeInOut {
+  transition: 0.3s ease-in-out;
+}
+
+// Media Query Mixins
+@mixin mediaSmall {
+  @media screen and (min-width: 768px) {
+    @content;
+  }
+}
+@mixin mediaMedium {
+  @media screen and (min-width: 992px) {
+    @content;
+  }
+}
+@mixin mediaLarge {
+  @media screen and (min-width: 1200px) {
+    @content;
+  }
+}

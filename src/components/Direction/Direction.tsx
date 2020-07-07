@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import DirectionLink from './DirectionLink';
+import './Direction.scss';
 
 const Direction: FC = () => {
   return (

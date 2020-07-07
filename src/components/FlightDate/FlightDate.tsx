@@ -3,6 +3,7 @@ import { useLocation, useHistory } from 'react-router-dom';
 import DateLink from './DateLink';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import './FlightDate.scss';
 
 function reverseDate(date: string | null) {
   if (date) {

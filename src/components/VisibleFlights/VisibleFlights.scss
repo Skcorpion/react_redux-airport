@@ -1,0 +1,76 @@
+@import '../../assets/variables';
+
+.flights-table {
+  width: 100%;
+  color: #212529;
+  background-color: #fff;
+  margin-bottom: 2rem;
+
+  thead {
+    color: #95989a;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  th {
+    padding: 0.75rem;
+    vertical-align: bottom;
+
+    &:first-of-type {
+      text-align: center;
+    }
+  }
+
+  tbody tr {
+    &:nth-of-type(odd) {
+      background-color: rgba(0, 102, 135, 0.1);
+    }
+
+    &:hover {
+      -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  td {
+    font-size: 18px;
+    line-height: 40px;
+    padding: 16px 10px;
+    border: 0;
+    vertical-align: top;
+  }
+
+  &__terminal-col {
+    text-align: center;
+
+    span {
+      color: $term-a;
+      font-weight: 700;
+      border: 1px solid $term-a;
+      border-radius: 50%;
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      line-height: 35px;
+      font-size: 22px;
+    }
+
+    &.blue span {
+      border-color: $main-color;
+      color: $main-color;
+    }
+  }
+}
+
+.nothing-found {
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+  padding: 0 50px;
+  background-color: #fff;
+}

@@ -1,7 +1,8 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { connect, ConnectedProps } from 'react-redux';
-import { setFilteredQuery } from '../actions';
+import { setFilteredQuery } from '../../actions';
+import './SearchField.scss';
 
 const SearchField: FC<ConnectedProps<typeof connector>> = ({
   setFilteredQuery,
