@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { Arrival, Departure } from '../../utils/flightsTypes';
 import classNames from 'classnames';
 import { statusFlight } from '../../utils/statusFlight';
+import FlightDetailsLink from './FlightDetailsLink';
 
 type Props = {
   flight: Arrival | Departure;
@@ -51,11 +52,18 @@ const Flight: FC<Props> = ({ flight }) => {
       >
         <span>{term}</span>
       </td>
-      <td>{preparedLocalTime}</td>
-      <td>{destination}</td>
-      <td>{`${statusFlight(status)} ${actualTime}`}</td>
-      <td>{airline.en.name}</td>
-      <td>{codeShareData[0].codeShare}</td>
+      <td className="flights-table__local-time">{preparedLocalTime}</td>
+      <td className="flights-table__destination-col">{destination}</td>
+      <td className="flights-table__status-col">{`${statusFlight(
+        status
+      )} ${actualTime}`}</td>
+      <td className="flights-table__airline-col">{airline.en.name}</td>
+      <td className="flights-table__flight-col">
+        {codeShareData[0].codeShare}
+      </td>
+      <td className="flights-table__details-field">
+        <FlightDetailsLink flightId={flight.ID} />
+      </td>
     </tr>
   );
 };

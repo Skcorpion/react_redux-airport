@@ -61,6 +61,16 @@
       color: $main-color;
     }
   }
+
+  &__details-field {
+    min-width: 150px;
+
+    a {
+      color: $main-color;
+      border-bottom: 1px solid $main-color;
+      transition: 0.2s ease-out;
+    }
+  }
 }
 
 .nothing-found {
@@ -73,4 +83,93 @@
   font-weight: 700;
   padding: 0 50px;
   background-color: #fff;
+}
+
+@media (max-width: 767.98px) {
+  .flights-table {
+    thead {
+      display: none;
+    }
+
+    tbody tr {
+      display: grid;
+      grid-template-columns: 3fr 5fr 1fr;
+      grid-template-rows: auto;
+      grid-template-areas:
+        'localTime destination link'
+        '. status link'
+        'flight airline link';
+    }
+
+    td {
+      padding: 8px 10px;
+    }
+
+    &__terminal-col {
+      display: none;
+    }
+
+    &__local-time {
+      grid-area: localTime;
+    }
+    &__destination-col {
+      grid-area: destination;
+    }
+    &__status-col {
+      grid-area: status;
+    }
+    &__airline-col {
+      grid-area: airline;
+      color: #7984b8;
+      font-size: 14px !important;
+    }
+    &__flight-col {
+      grid-area: flight;
+      color: #95989a;
+      font-size: 14px !important;
+    }
+
+    &__details-field {
+      grid-area: link;
+    }
+  }
+}
+
+@include mediaMedium {
+  .flights-table {
+    &__details-field a {
+      opacity: 0;
+
+      &:hover {
+        border-color: transparent;
+      }
+    }
+
+    tr:hover a {
+      opacity: 1;
+    }
+  }
+}
+@media (max-width: 991.98px) {
+  .flights-table {
+    &__details-field {
+      font-size: 0 !important;
+      width: 70px;
+      min-width: auto;
+      padding: 0 !important;
+      height: 100%;
+      background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMTBweCIgaGVpZ2h0PSIxNnB4IiB2aWV3Qm94PSIwIDAgMTAgMTYiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDQ4LjIgKDQ3MzI3KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5hcnJvdzwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxkZWZzPjwvZGVmcz4KICAgIDxnIGlkPSJQYWdlLTEiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxnIGlkPSJhcnJvdyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTEwLjAwMDAwMCwgLTcuMDAwMDAwKSI+CiAgICAgICAgICAgIDxyZWN0IGlkPSJyZWN0YW5nbGUiIHg9IjAiIHk9IjAiIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCI+PC9yZWN0PgogICAgICAgICAgICA8cG9seWdvbiBpZD0icGF0aCIgZmlsbD0iIzAwQjZGMSIgcG9pbnRzPSIxMC43NSA5LjI1IDEyLjUgNy41IDIwIDE1IDEyLjUgMjIuNSAxMC43NSAyMC43NSAxNi41IDE1Ij48L3BvbHlnb24+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4=)
+        50% no-repeat;
+      position: relative;
+
+      a {
+        height: 100%;
+        display: block;
+        opacity: 0;
+        position: absolute;
+        width: 100%;
+        top: 0;
+      }
+    }
+  }
 }

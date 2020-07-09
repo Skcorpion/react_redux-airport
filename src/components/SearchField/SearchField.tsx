@@ -50,6 +50,11 @@ const SearchField: FC<ConnectedProps<typeof connector>> = ({
           placeholder="Airline, destination or flight #"
           value={visibleQuery}
           onChange={handleQueryUpdate}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter') {
+              handleButtonQueryUpdate();
+            }
+          }}
         />
         <button
           className="search-field__button"

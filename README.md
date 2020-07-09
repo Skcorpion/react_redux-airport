@@ -16,7 +16,6 @@
 - відображати дві закладки Arrivals / Departures
 - відображати дані для кожної закладки:
   - Terminal
-  - Gate (якщо інформація присутня в API)
   - Time
   - Destination
   - Airline (без логотипу авіалінії)

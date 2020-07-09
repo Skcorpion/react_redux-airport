@@ -3,8 +3,6 @@
 .search-field {
   position: relative;
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
   margin: 0 auto;
 
   &__title {
@@ -52,6 +50,23 @@
 }
 
 // Mobile
+@media (max-width: 767.98px) {
+  .search-field {
+    &__title {
+      padding-left: 15px;
+    }
+    &__input {
+      font-size: 1.3rem;
+      width: 100%;
+      padding-left: 15px;
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px;
+    }
+    &__button {
+      display: none;
+    }
+  }
+}
 @include mediaSmall {
   .search-field {
     max-width: 83.33333%;

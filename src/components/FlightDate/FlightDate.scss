@@ -123,3 +123,26 @@
     }
   }
 }
+
+@media (max-width: 377.98px) {
+  .flights-dates {
+    &__list {
+      width: 275px;
+    }
+
+    &__day {
+      font-size: 14px;
+    }
+  }
+}
+
+@media (max-width: 991.98px) {
+  .flights-calendar {
+    &__container {
+      margin-left: 10px;
+    }
+  }
+  .flights-dates__list {
+    margin-left: 1.2rem;
+  }
+}
