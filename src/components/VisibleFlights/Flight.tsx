@@ -3,12 +3,14 @@ import { Arrival, Departure } from '../../utils/flightsTypes';
 import classNames from 'classnames';
 import { statusFlight } from '../../utils/statusFlight';
 import FlightDetailsLink from './FlightDetailsLink';
+import { useLocation } from 'react-router-dom';
 
 type Props = {
   flight: Arrival | Departure;
+  fetching: boolean;
 };
 
-const Flight: FC<Props> = ({ flight }) => {
+const Flight: FC<Props> = ({ flight, fetching }) => {
   function isArrival(flight: Arrival | Departure): flight is Arrival {
     return (flight as Arrival).timeLandCalc !== undefined;
   }
@@ -40,11 +42,28 @@ const Flight: FC<Props> = ({ flight }) => {
       actualTime = toTimeString(flight.timeTakeofFact);
     }
   }
-
   const preparedLocalTime = toTimeString(localTime);
 
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const query = searchParams.get('query') || '';
+  let leaveTo = false;
+  if (query) {
+    const pattern = new RegExp(query, 'i');
+    leaveTo =
+      pattern.test(codeShareData[0].codeShare) ||
+      pattern.test(destination) ||
+      pattern.test(airline.en.name)
+        ? false
+        : true;
+  }
+
   return (
-    <tr>
+    <tr
+      className={classNames({
+        'list-leave-active list-leave-to': fetching || leaveTo,
+      })}
+    >
       <td
         className={classNames('flights-table__terminal-col', {
           blue: term === 'D',

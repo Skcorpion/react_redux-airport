@@ -51,7 +51,7 @@ const VisibleFlights: FC<ConnectedProps<typeof connector>> = ({
         </thead>
         <tbody>
           {(flights as Array<Arrival | Departure>).map((flight) => (
-            <Flight key={flight.ID} flight={flight} />
+            <Flight key={flight.ID} flight={flight} fetching={fetching} />
           ))}
         </tbody>
       </table>

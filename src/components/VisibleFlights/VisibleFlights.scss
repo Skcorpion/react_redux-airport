@@ -73,6 +73,16 @@
   }
 }
 
+.list-leave-active,
+.list-enter-active {
+  transition: all 1s;
+}
+
+.list-leave-to {
+  transform: translateY(25px);
+  opacity: 0;
+}
+
 .nothing-found {
   min-height: 300px;
   display: flex;
