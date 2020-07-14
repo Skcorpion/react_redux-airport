@@ -10,11 +10,11 @@ type Props = {
   fetching: boolean;
 };
 
-const Flight: FC<Props> = ({ flight, fetching }) => {
-  function isArrival(flight: Arrival | Departure): flight is Arrival {
-    return (flight as Arrival).timeLandCalc !== undefined;
-  }
+export function isArrival(flight: Arrival | Departure): flight is Arrival {
+  return (flight as Arrival).timeLandCalc !== undefined;
+}
 
+const Flight: FC<Props> = ({ flight, fetching }) => {
   const { term, status, airline, codeShareData, actual } = flight;
   let localTime = '',
     actualTime = '',

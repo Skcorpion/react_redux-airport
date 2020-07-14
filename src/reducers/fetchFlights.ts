@@ -1,20 +1,21 @@
 import { Actions, ActionTypes } from '../utils/actionTypes';
-import { IFetchData } from '../utils/interfaces';
+import { IFetchFlights } from '../utils/interfaces';
 
-const initialState: IFetchData = {
+const initialState: IFetchFlights = {
   flights: { arrival: [], departure: [] },
   direction: null,
   fetching: false,
 };
 
-export default (state: IFetchData = initialState, action: Actions) => {
+export default (state: IFetchFlights = initialState, action: Actions) => {
   switch (action.type) {
-    case ActionTypes.REQUESTING_DATA:
+    case ActionTypes.REQUESTING_FLIGHTS:
       return { ...state, fetching: true };
 
-    case ActionTypes.RECEIVED_DATA:
+    case ActionTypes.RECEIVED_FLIGHTS:
       const { flights, direction, date } = action;
-      const currentDay = new Date(date).getDate();
+      const preparedDate = date.split('-').reverse().join('-');
+      const currentDay = new Date(preparedDate).getDate();
       return {
         ...state,
         flights: {
@@ -50,6 +51,6 @@ export default (state: IFetchData = initialState, action: Actions) => {
 };
 
 //selector
-export const getFlights = (state: IFetchData) => state.flights;
-export const getFetching = (state: IFetchData) => state.fetching;
-export const getDirection = (state: IFetchData) => state.direction;
+export const getFlights = (state: IFetchFlights) => state.flights;
+export const getFetching = (state: IFetchFlights) => state.fetching;
+export const getDirection = (state: IFetchFlights) => state.direction;

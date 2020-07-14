@@ -1,9 +1,10 @@
-import { loadData } from './fetchDataActions';
+import { loadFlights, loadFlight } from './fetchDataActions';
 import { setFilteredQueryWithDelay } from './sortActions';
 
 export {
   // -------- Fetch data actions --------
-  loadData,
+  loadFlights,
+  loadFlight,
   // -------- Sort actions --------
   setFilteredQueryWithDelay as setFilteredQuery,
 };

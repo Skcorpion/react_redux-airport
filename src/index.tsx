@@ -7,6 +7,7 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { HashRouter, Switch, Route } from 'react-router-dom';
+import FlightDetails from './components/FlightDetails/FlightDetails';
 
 const store = createStore(
   rootReducer,
@@ -19,6 +20,7 @@ ReactDOM.render(
       <HashRouter>
         <Switch>
           <Route exact path="/:direction" component={App} />
+          <Route exact path="/:direction/:flightId" component={FlightDetails} />
         </Switch>
       </HashRouter>
     </Provider>

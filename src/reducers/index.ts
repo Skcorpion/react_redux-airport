@@ -1,21 +1,28 @@
 import { RootState, DirectionTypes } from '../utils/interfaces';
 import { createSelector } from 'reselect';
 import sortReducer, * as fromSort from './sortReducer';
-import fetchData, * as fromFetchData from './fetchData';
+import fetchFlights, * as fromFetchFlights from './fetchFlights';
+import fetchFlight, * as fromFetchFlight from './fetchFlight';
 import { combineReducers } from 'redux';
 
 export const rootReducer = combineReducers({
-  fetchData,
+  fetchFlights,
   sortReducer,
+  fetchFlight,
 });
 
 //selector
 export const getFlights = (state: RootState) =>
-  fromFetchData.getFlights(state.fetchData);
+  fromFetchFlights.getFlights(state.fetchFlights);
 export const getFetching = (state: RootState) =>
-  fromFetchData.getFetching(state.fetchData);
+  fromFetchFlights.getFetching(state.fetchFlights);
 export const getDirection = (state: RootState) =>
-  fromFetchData.getDirection(state.fetchData);
+  fromFetchFlights.getDirection(state.fetchFlights);
+
+export const getFlight = (state: RootState) =>
+  fromFetchFlight.getFlight(state.fetchFlight);
+export const getFlightFetching = (state: RootState) =>
+  fromFetchFlight.getFetching(state.fetchFlight);
 
 export const getFilteredQuery = (state: RootState) =>
   fromSort.getFilteredQuery(state.sortReducer);

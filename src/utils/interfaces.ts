@@ -1,4 +1,4 @@
-import { Body } from './flightsTypes';
+import { Body, Departure, Arrival } from './flightsTypes';
 
 export enum DirectionTypes {
   ARRIVAL = 'arrival',
@@ -14,13 +14,19 @@ export interface ISort {
   filteredQuery: string;
 }
 
-export interface IFetchData {
+export interface IFetchFlights {
   flights: Body;
   direction: IDirection;
   fetching: boolean;
 }
 
+export interface IFetchFlight {
+  flight: Arrival | Departure | null;
+  fetching: boolean;
+}
+
 export interface RootState {
   sortReducer: ISort;
-  fetchData: IFetchData;
+  fetchFlights: IFetchFlights;
+  fetchFlight: IFetchFlight;
 }

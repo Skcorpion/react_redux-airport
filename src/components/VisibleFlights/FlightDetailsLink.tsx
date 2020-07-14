@@ -13,7 +13,7 @@ const FlightDetailsLink: FC<Props> = ({ flightId }) => {
   const date = searchParams.get('date') || currentDate;
 
   return (
-    <NavLink to={`${pathname}${flightId}?dt=${date}`}>Flight Details</NavLink>
+    <NavLink to={`${pathname}/${flightId}?dt=${date}`}>Flight Details</NavLink>
   );
 };
 

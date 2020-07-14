@@ -1,25 +1,34 @@
-import { IFlights } from './flightsTypes';
+import { IFlights, IFlight } from './flightsTypes';
 import { IDirection } from './interfaces';
 
 /*
  * action types
  */
 export enum ActionTypes {
-  REQUESTING_DATA = 'REQUESTING_DATA',
-  RECEIVED_DATA = 'RECEIVED_DATA',
+  REQUESTING_FLIGHTS = 'REQUESTING_FLIGHTS',
+  REQUESTING_FLIGHT = 'REQUESTING_FLIGHT',
+  RECEIVED_FLIGHTS = 'RECEIVED_FLIGHTS',
+  RECEIVED_FLIGHT = 'RECEIVED_FLIGHT',
   SET_FILTERED_QUERY = 'SET_FILTERED_QUERY',
 }
 /*
  * actions
  */
-interface RequestingDataAction {
-  type: typeof ActionTypes.REQUESTING_DATA;
+interface RequestingFlightsAction {
+  type: typeof ActionTypes.REQUESTING_FLIGHTS;
 }
-interface ReceivedDataAction {
-  type: typeof ActionTypes.RECEIVED_DATA;
+interface RequestingFlightAction {
+  type: typeof ActionTypes.REQUESTING_FLIGHT;
+}
+interface ReceivedFlightsAction {
+  type: typeof ActionTypes.RECEIVED_FLIGHTS;
   flights: IFlights;
   direction: IDirection;
   date: string;
+}
+interface ReceivedFlightAction {
+  type: typeof ActionTypes.RECEIVED_FLIGHT;
+  flight: IFlight;
 }
 interface SetFilteredQueryAction {
   type: typeof ActionTypes.SET_FILTERED_QUERY;
@@ -27,6 +36,8 @@ interface SetFilteredQueryAction {
 }
 
 export type Actions =
-  | RequestingDataAction
-  | ReceivedDataAction
+  | RequestingFlightsAction
+  | RequestingFlightAction
+  | ReceivedFlightsAction
+  | ReceivedFlightAction
   | SetFilteredQueryAction;

@@ -1,0 +1,140 @@
+@import '../../assets/variables';
+// Flights Container
+
+.flight {
+  &__container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 30px;
+    // background: hsla(0, 0%, 100%, 0.55);
+  }
+
+  &__back-button {
+    margin-bottom: 1rem;
+    a {
+      display: inline-block;
+      padding: 0 20px 0 35px;
+      line-height: 60px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      border-radius: 0 6px 6px 0;
+      -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+      background: #fff;
+      color: $main-color;
+      @include easeInOut();
+
+      &:hover {
+        background: $main-color;
+        color: #fff;
+      }
+    }
+  }
+  &__flight-number {
+    font-size: 24px;
+    line-height: 28px;
+    color: #2f2f2f;
+  }
+  &__city-name {
+    font-weight: 300;
+    font-size: 70px;
+    line-height: 80px;
+    margin-bottom: 30px;
+  }
+  &__title {
+    font-size: 24px;
+    line-height: 28px;
+    margin-bottom: 10px;
+    font-weight: 400;
+  }
+  &__details {
+    ul {
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+
+      li {
+        margin-bottom: 15px;
+        min-width: 115px;
+        width: 25%;
+      }
+    }
+    p {
+      margin-bottom: 0;
+    }
+    &-label {
+      font-size: 16px;
+      font-weight: 700;
+      color: #95989a;
+    }
+    &-value {
+      line-height: 35px;
+      font-size: 24px;
+    }
+  }
+  &__status {
+    display: inline-block;
+    color: #fff;
+    background: $main-color;
+    height: 45px;
+    line-height: 45px;
+    font-size: 20px;
+    border-radius: 0 6px 6px;
+    padding: 0 25px 0 20px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .flight {
+    &__container {
+      max-width: 100%;
+    }
+    &__flight-number {
+      font-size: 14px;
+      b {
+        color: #95989a;
+        font-weight: 400;
+      }
+    }
+    &__city-name {
+      font-size: 40px;
+      line-height: 40px;
+      margin-bottom: 10px;
+    }
+    &__title {
+      font-size: 18px;
+      line-height: 28px;
+    }
+  }
+}
+@include mediaSmall {
+  .flight {
+    &__container {
+      max-width: 720px;
+    }
+    &__info-details {
+      max-width: 75%;
+    }
+  }
+}
+
+@include mediaMedium {
+  .flight {
+    &__container {
+      max-width: 960px;
+    }
+  }
+}
+@include mediaLarge {
+  .flight {
+    &__container {
+      max-width: 1140px;
+    }
+    &__details ul li {
+      width: auto;
+    }
+  }
+}

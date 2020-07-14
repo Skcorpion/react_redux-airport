@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { ConnectedProps, connect } from 'react-redux';
 import { RootState, DirectionTypes } from '../../utils/interfaces';
 import { getVisibleFlights, getFetching } from '../../reducers';
-import { loadData } from '../../actions';
+import { loadFlights } from '../../actions';
 import { useLocation, useParams } from 'react-router-dom';
 import { Departure, Arrival } from '../../utils/flightsTypes';
 import Flight from './Flight';
@@ -11,7 +11,7 @@ import './VisibleFlights.scss';
 const VisibleFlights: FC<ConnectedProps<typeof connector>> = ({
   flights,
   fetching,
-  loadData,
+  loadFlights,
 }) => {
   const location = useLocation();
   const params: { direction: string } = useParams();
@@ -25,14 +25,14 @@ const VisibleFlights: FC<ConnectedProps<typeof connector>> = ({
 
   const currentDate = new Date().toLocaleDateString().split('.').join('-');
   const date = searchParams.get('date') || currentDate;
-  const preparedDate = date.split('-').reverse().join('-');
+  // const preparedDate = date.split('-').reverse().join('-');
 
   useEffect(() => {
-    console.log('reload data from:', pathname, ', date:', preparedDate);
+    console.log('reload data from:', pathname, ', date:', date);
 
-    loadData(preparedDate, pathname);
+    loadFlights(date, pathname);
     // eslint-disable-next-line
-  }, [pathname, preparedDate]);
+  }, [pathname, date]);
 
   const listOfHeads = [
     'Terminal',
@@ -69,5 +69,5 @@ const mapStateToProps = (state: RootState) => ({
   fetching: getFetching(state),
 });
 
-const connector = connect(mapStateToProps, { loadData });
+const connector = connect(mapStateToProps, { loadFlights });
 export default connector(VisibleFlights);

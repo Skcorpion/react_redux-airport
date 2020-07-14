@@ -2,6 +2,10 @@ export interface IFlights {
   body: Body;
   error: Error;
 }
+export interface IFlight {
+  body: Arrival | Departure;
+  error: Error;
+}
 
 export interface Body {
   departure: Departure[];
