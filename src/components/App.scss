@@ -37,22 +37,34 @@ table {
   border-spacing: 0;
 }
 
-// Flights Container
+// Container
 
-.flights__container {
+.container {
   width: 100%;
   margin-right: auto;
   margin-left: auto;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
-@include mediaMedium {
-  .flights__container {
-    max-width: 100%;
-    padding: 0;
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
   }
 }
-@include mediaLarge {
-  .flights__container {
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
     max-width: 1140px;
   }
 }

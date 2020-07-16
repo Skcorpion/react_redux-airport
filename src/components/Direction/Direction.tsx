@@ -4,9 +4,9 @@ import './Direction.scss';
 
 const Direction: FC = () => {
   return (
-    <div className="flights-tabs">
-      <DirectionLink>departures</DirectionLink>
-      <DirectionLink>arrivals</DirectionLink>
+    <div className="flights__direction-tabs direction-tabs">
+      <DirectionLink direction="departures">departures</DirectionLink>
+      <DirectionLink direction="arrivals">arrivals</DirectionLink>
     </div>
   );
 };

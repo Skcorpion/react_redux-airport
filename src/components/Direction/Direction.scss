@@ -1,9 +1,12 @@
 @import '../../assets/variables';
 
-.flights-tabs {
-  width: 100%;
-  margin: 2.6rem auto 0;
-
+.flights {
+  &__direction-tabs {
+    width: 100%;
+    margin: 2.6rem auto 0;
+  }
+}
+.direction-tabs {
   &__tab {
     display: inline-block;
     width: 50%;
@@ -18,7 +21,6 @@
     color: #fff;
     background: $main-color-light;
     @include easeInOut();
-    /* overflow: hidden; */
 
     &:hover {
       background: $main-color;

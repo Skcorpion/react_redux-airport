@@ -7,25 +7,3 @@ $term-a: #63c745;
   -webkit-transition: 0.3s ease-in-out;
   transition: 0.3s ease-in-out;
 }
-
-// Media Query Mixins
-@mixin mediaXSmall {
-  @media screen and (min-width: 576px) {
-    @content;
-  }
-}
-@mixin mediaSmall {
-  @media screen and (min-width: 768px) {
-    @content;
-  }
-}
-@mixin mediaMedium {
-  @media screen and (min-width: 992px) {
-    @content;
-  }
-}
-@mixin mediaLarge {
-  @media screen and (min-width: 1200px) {
-    @content;
-  }
-}

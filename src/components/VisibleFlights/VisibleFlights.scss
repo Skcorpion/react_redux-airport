@@ -145,7 +145,7 @@
   }
 }
 
-@include mediaMedium {
+@media (min-width: 992px) {
   .flights-table {
     &__details-field a {
       opacity: 0;
@@ -160,7 +160,12 @@
     }
   }
 }
+
 @media (max-width: 991.98px) {
+  .flights__container {
+    max-width: 100%;
+    padding: 0;
+  }
   .flights-table {
     &__details-field {
       font-size: 0 !important;

@@ -7,6 +7,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { Departure, Arrival } from '../../utils/flightsTypes';
 import Flight from './Flight';
 import './VisibleFlights.scss';
+// import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const VisibleFlights: FC<ConnectedProps<typeof connector>> = ({
   flights,
@@ -63,6 +64,17 @@ const VisibleFlights: FC<ConnectedProps<typeof connector>> = ({
     </div>
   );
 };
+
+// Need todo
+{
+  /* <TransitionGroup>
+  <CSSTransition
+    key={flight.ID}
+    classNames="list"
+    timeout={{ enter: 500, exit: 300 }}
+  ></CSSTransition>
+</TransitionGroup> */
+}
 
 const mapStateToProps = (state: RootState) => ({
   flights: getVisibleFlights(state),

@@ -12,7 +12,7 @@ const getData = async <T>(url: string): Promise<T> => {
 };
 
 export const getFlightsFromServer = async (date: string) => {
-  await delay(1000);
+  // await delay(1000);
   return getData<IFlights>(`${API_URL}${date}`);
 };
 

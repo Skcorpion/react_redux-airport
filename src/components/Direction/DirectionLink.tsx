@@ -2,10 +2,11 @@ import React, { FC } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 
 type Props = {
+  direction: string;
   children: string;
 };
 
-const DirectionLink: FC<Props> = ({ children }) => {
+const DirectionLink: FC<Props> = ({ direction, children }) => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const date = searchParams.get('date') || '';
@@ -13,15 +14,15 @@ const DirectionLink: FC<Props> = ({ children }) => {
 
   return (
     <NavLink
-      className="flights-tabs__tab"
-      activeClassName="flights-tabs__tab_active"
+      className="direction-tabs__tab"
+      activeClassName="direction-tabs__tab_active"
       isActive={() => {
-        if (location.pathname.includes(children)) {
+        if (location.pathname.includes(direction)) {
           return true;
         }
         return false;
       }}
-      to={`/${children}${date || query ? `?${searchParams.toString()}` : ''}`}
+      to={`/${direction}${date || query ? `?${searchParams.toString()}` : ''}`}
     >
       {children}
     </NavLink>

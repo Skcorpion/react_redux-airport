@@ -1,13 +1,7 @@
 @import '../../assets/variables';
-// Flights Container
 
 .flight {
   &__container {
-    width: 100%;
-    margin-right: auto;
-    margin-left: auto;
-    padding-left: 10px;
-    padding-right: 10px;
     padding-top: 30px;
     // background: hsla(0, 0%, 100%, 0.55);
   }
@@ -110,31 +104,16 @@
     }
   }
 }
-@include mediaSmall {
+@media (min-width: 768px) {
   .flight {
-    &__container {
-      max-width: 720px;
-    }
     &__info-details {
       max-width: 75%;
     }
   }
 }
 
-@include mediaMedium {
-  .flight {
-    &__container {
-      max-width: 960px;
-    }
-  }
-}
-@include mediaLarge {
-  .flight {
-    &__container {
-      max-width: 1140px;
-    }
-    &__details ul li {
-      width: auto;
-    }
+@media (min-width: 1200px) {
+  &__details ul li {
+    width: auto;
   }
 }

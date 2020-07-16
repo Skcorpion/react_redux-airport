@@ -67,7 +67,7 @@
     }
   }
 }
-@include mediaSmall {
+@media (min-width: 768px) {
   .search-field {
     max-width: 83.33333%;
 
@@ -82,7 +82,7 @@
     }
   }
 }
-@include mediaMedium {
+@media (min-width: 992px) {
   .search-field {
     &__title {
       font-size: 70px;
@@ -98,7 +98,7 @@
     }
   }
 }
-@include mediaLarge {
+@media (min-width: 1200px) {
   .search-field {
     max-width: 66.66667%;
   }

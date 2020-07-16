@@ -1,13 +1,16 @@
 import React, { FC, useEffect, useState } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 import { connect, ConnectedProps } from 'react-redux';
 import { setFilteredQuery } from '../../actions';
 import './SearchField.scss';
 
 const SearchField: FC<ConnectedProps<typeof connector>> = ({
   setFilteredQuery,
+  children,
 }) => {
   const history = useHistory();
+  const params: { direction: string | undefined } = useParams();
+  const direction = params.direction || 'departures';
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const query = searchParams.get('query') || '';
@@ -20,15 +23,18 @@ const SearchField: FC<ConnectedProps<typeof connector>> = ({
   const [visibleQuery, setVisibleQuery] = useState<string>(query);
 
   const updateQuery = (value: string) => {
-    if (value) {
-      searchParams.set('query', value);
-    } else {
-      searchParams.delete('query');
-    }
+    if (params.direction || value) {
+      if (value) {
+        searchParams.set('query', value);
+      } else {
+        searchParams.delete('query');
+      }
 
-    history.push({
-      search: searchParams.toString(),
-    });
+      history.push({
+        pathname: direction,
+        search: searchParams.toString(),
+      });
+    }
   };
 
   const handleQueryUpdate = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -63,6 +69,7 @@ const SearchField: FC<ConnectedProps<typeof connector>> = ({
           Search
         </button>
       </div>
+      {children}
     </div>
   );
 };

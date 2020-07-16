@@ -88,7 +88,7 @@ const FlightDetails: FC<ConnectedProps<typeof connector>> = ({
       .filter(({ value }) => value);
 
     return (
-      <div className="flight__container">
+      <div className="container flight__container">
         <div className="flight__back-button">
           <NavLink to={`/${pathname}?date=${date}`}>Back</NavLink>
         </div>
