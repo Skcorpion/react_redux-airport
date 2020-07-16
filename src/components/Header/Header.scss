@@ -1,0 +1,24 @@
+@import '../../assets/variables';
+
+.header {
+  position: fixed;
+  width: 100%;
+  z-index: 99;
+  background: $main-color;
+  color: #fff;
+  box-shadow: 0 5px 10px rgba(37, 40, 41, 0.3);
+  padding: 0 20px;
+  align-items: center;
+  display: flex;
+}
+
+@media (max-width: 991.8px) {
+  .header h1 {
+    margin: 7px;
+  }
+}
+@media (min-width: 992px) {
+  .header {
+    height: 92px;
+  }
+}

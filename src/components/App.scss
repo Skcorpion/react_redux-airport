@@ -30,6 +30,7 @@ input {
 
 a {
   text-decoration: none;
+  color: inherit;
 }
 
 table {
@@ -47,6 +48,16 @@ table {
   padding-right: 10px;
 }
 
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.wrapper-container {
+  padding-top: 50px;
+  flex: 1 0 auto;
+}
+
 @media (min-width: 576px) {
   .container {
     max-width: 540px;
@@ -61,6 +72,9 @@ table {
 @media (min-width: 992px) {
   .container {
     max-width: 960px;
+  }
+  .wrapper-container {
+    padding-top: 92px;
   }
 }
 @media (min-width: 1200px) {

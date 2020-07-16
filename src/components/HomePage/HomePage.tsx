@@ -1,7 +1,7 @@
 import React from 'react';
 import DirectionLink from '../Direction/DirectionLink';
 import SearchField from '../SearchField/SearchField';
-import './Home.scss';
+import './HomePage.scss';
 
 const Home = () => {
   return (
