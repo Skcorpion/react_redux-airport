@@ -38,7 +38,7 @@ const FlightDetails: FC<ConnectedProps<typeof connector>> = ({
       gate: string | undefined = undefined;
 
     const toTimeString = (date: string) => {
-      return new Date(date).toLocaleTimeString([], {
+      return new Date(date).toLocaleTimeString('en-GB', {
         hour: 'numeric',
         minute: '2-digit',
       });

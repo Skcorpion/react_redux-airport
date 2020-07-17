@@ -21,7 +21,7 @@ const Flight: FC<Props> = ({ flight, fetching }) => {
     destination = '';
 
   const toTimeString = (date: string) => {
-    return new Date(date).toLocaleTimeString([], {
+    return new Date(date).toLocaleTimeString('en-GB', {
       hour: 'numeric',
       minute: '2-digit',
     });

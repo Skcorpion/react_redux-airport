@@ -12,12 +12,10 @@ function reverseDate(date: string | null) {
   return new Date();
 }
 function stringifyDate(date: Date) {
-  return date.toLocaleDateString().split('.').join('-');
+  return date.toLocaleDateString('en-GB').split('/').join('-');
 }
 function calendarDate(date: Date) {
-  return date
-    .toLocaleDateString([], { month: 'numeric', day: 'numeric' })
-    .replace('.', '/');
+  return date.toLocaleDateString('en-GB', { month: 'numeric', day: 'numeric' });
 }
 
 const FlightDate: FC = () => {
@@ -46,7 +44,7 @@ const FlightDate: FC = () => {
     // eslint-disable-next-line
   }, [selectedDate]);
 
-  console.log(selectedDate);
+  console.log('selectedDate: ', selectedDate);
 
   return (
     <div className="flights-dates__container">
