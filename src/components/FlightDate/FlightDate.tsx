@@ -2,20 +2,18 @@ import React, { FC, useState, useEffect } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import DateLink from './DateLink';
 import DatePicker from 'react-datepicker';
+import { toDateFormat, stringifyDate } from '../../helpers';
 import 'react-datepicker/dist/react-datepicker.css';
 import './FlightDate.scss';
 
-function reverseDate(date: string | null) {
-  if (date) {
-    return new Date(date.split('-').reverse().join('-'));
-  }
-  return new Date();
-}
-function stringifyDate(date: Date) {
-  return date.toLocaleDateString('en-GB').split('/').join('-');
-}
-function calendarDate(date: Date) {
-  return date.toLocaleDateString('en-GB', { month: 'numeric', day: 'numeric' });
+const calendarDate = (date: Date) =>
+  date.toLocaleDateString('en-GB', { month: 'numeric', day: 'numeric' });
+
+function getDateToDateLink(day: number) {
+  const date = new Date();
+  date.setDate(date.getDate() + day);
+
+  return date;
 }
 
 const FlightDate: FC = () => {
@@ -23,21 +21,17 @@ const FlightDate: FC = () => {
   const history = useHistory();
   const searchParams = new URLSearchParams(location.search);
   const [selectedDate, handleDateChange] = useState(
-    reverseDate(searchParams.get('date'))
+    toDateFormat(searchParams.get('date'))
   );
-  const setDateParams = (date: Date) => {
-    handleDateChange(reverseDate(stringifyDate(date)));
-  };
-  const getDateToParams = (day: number) => {
-    const date = new Date();
-    date.setDate(date.getDate() + day);
-
-    return date;
-  };
 
   useEffect(() => {
     const date = stringifyDate(selectedDate);
-    searchParams.set('date', date);
+    const currentDate = stringifyDate(new Date());
+    if (date === currentDate) {
+      searchParams.delete('date');
+    } else {
+      searchParams.set('date', date);
+    }
     history.push({
       search: searchParams.toString(),
     });
@@ -67,25 +61,25 @@ const FlightDate: FC = () => {
       <div className="flights-dates__list">
         <DateLink
           selectedDate={selectedDate}
+          setSelectedDate={handleDateChange}
+          date={getDateToDateLink(-1)}
           calendarDate={calendarDate}
-          setDateParams={setDateParams}
-          date={getDateToParams(-1)}
         >
           Yesterday
         </DateLink>
         <DateLink
           selectedDate={selectedDate}
+          setSelectedDate={handleDateChange}
+          date={getDateToDateLink(0)}
           calendarDate={calendarDate}
-          setDateParams={setDateParams}
-          date={getDateToParams(0)}
         >
           Today
         </DateLink>
         <DateLink
           selectedDate={selectedDate}
+          setSelectedDate={handleDateChange}
+          date={getDateToDateLink(1)}
           calendarDate={calendarDate}
-          setDateParams={setDateParams}
-          date={getDateToParams(1)}
         >
           Tomorrow
         </DateLink>

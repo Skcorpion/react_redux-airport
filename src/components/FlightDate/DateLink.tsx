@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import classNames from 'classnames';
 
 type Props = {
-  setDateParams: (date: Date) => void;
+  setSelectedDate: (date: Date) => void;
   calendarDate: (date: Date) => string;
   date: Date;
   children: React.ReactNode;
@@ -10,21 +10,22 @@ type Props = {
 };
 
 const DateLink: FC<Props> = ({
-  setDateParams,
+  setSelectedDate,
   calendarDate,
   date,
   children,
   selectedDate,
 }) => {
   const isActive =
-    selectedDate.toLocaleDateString() === date.toLocaleDateString();
+    selectedDate.toLocaleDateString('en-GB') ===
+    date.toLocaleDateString('en-GB');
 
   return (
     <div
       className={classNames('flights-dates__day', {
         'flights-dates__day_active': isActive,
       })}
-      onClick={() => setDateParams(date)}
+      onClick={() => setSelectedDate(date)}
     >
       <span>{calendarDate(date)}</span>
       {children}

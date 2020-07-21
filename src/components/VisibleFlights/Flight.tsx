@@ -1,69 +1,21 @@
 import React, { FC } from 'react';
 import { Arrival, Departure } from '../../utils/flightsTypes';
 import classNames from 'classnames';
-import { statusFlight } from '../../utils/statusFlight';
 import FlightDetailsLink from './FlightDetailsLink';
-// import { useLocation } from 'react-router-dom';
+import { getStringTime, statusFlight, getFlightDetails } from '../../helpers';
 
 type Props = {
   flight: Arrival | Departure;
-  fetching: boolean;
 };
 
-export function isArrival(flight: Arrival | Departure): flight is Arrival {
-  return (flight as Arrival).timeLandCalc !== undefined;
-}
-
-const Flight: FC<Props> = ({ flight, fetching }) => {
-  const { term, status, airline, codeShareData, actual } = flight;
-  let localTime = '',
-    actualTime = '',
-    destination = '';
-
-  const toTimeString = (date: string) => {
-    return new Date(date).toLocaleTimeString('en-GB', {
-      hour: 'numeric',
-      minute: '2-digit',
-    });
-  };
-
-  if (isArrival(flight)) {
-    localTime = flight.timeToStand;
-    destination = flight['airportFromID.city_en'];
-
-    if (status === 'LN') {
-      actualTime = toTimeString(actual);
-    }
-  } else {
-    localTime = flight.timeDepExpectCalc;
-    destination = flight['airportToID.city_en'];
-
-    if (flight.timeTakeofFact && status === 'DP') {
-      actualTime = toTimeString(flight.timeTakeofFact);
-    }
-  }
-  const preparedLocalTime = toTimeString(localTime);
-
-  // const location = useLocation();
-  // const searchParams = new URLSearchParams(location.search);
-  // const query = searchParams.get('query') || '';
-  // let leaveTo = false;
-  // if (query) {
-  //   const pattern = new RegExp(query, 'i');
-  //   leaveTo =
-  //     pattern.test(codeShareData[0].codeShare) ||
-  //     pattern.test(destination) ||
-  //     pattern.test(airline.en.name)
-  //       ? false
-  //       : true;
-  // }
+const Flight: FC<Props> = ({ flight }) => {
+  const { term, status, codeShareData, airline } = flight;
+  const flightDetails = { ...getFlightDetails(flight) };
+  const { localTime, actualTime, destination } = flightDetails;
+  const preparedLocalTime = getStringTime(localTime);
 
   return (
-    <tr
-    // className={classNames({
-    //   'list-leave-active list-leave-to': fetching || leaveTo,
-    // })}
-    >
+    <tr>
       <td
         className={classNames('flights-table__terminal-col', {
           blue: term === 'D',

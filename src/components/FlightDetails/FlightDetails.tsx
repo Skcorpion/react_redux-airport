@@ -5,8 +5,8 @@ import { loadFlight } from '../../actions';
 import { getFlight } from '../../reducers';
 import { useLocation, useParams, NavLink } from 'react-router-dom';
 import './FlightDetails.scss';
-import { isArrival } from '../VisibleFlights/Flight';
-import { statusFlight } from '../../utils/statusFlight';
+import { isArrival, getFlightDetails } from '../../helpers';
+import { statusFlight, getStringTime } from '../../helpers';
 
 type Params = { direction: string; flightId: string };
 
@@ -19,7 +19,6 @@ const FlightDetails: FC<ConnectedProps<typeof connector>> = ({
   const pathname = params.direction;
   const flightId = params.flightId;
   const searchParams = new URLSearchParams(location.search);
-
   const date = searchParams.get('dt') || '';
 
   useEffect(() => {
@@ -30,43 +29,18 @@ const FlightDetails: FC<ConnectedProps<typeof connector>> = ({
   }, [date, flightId]);
 
   if (flight) {
-    const { term, status, codeShareData, actual } = flight;
-    let localTime = '',
-      actualTime = '',
-      destination = '',
-      stand: string | undefined = undefined,
-      gate: string | undefined = undefined;
+    const { term, status, codeShareData } = flight;
+    const flightDetails = { ...getFlightDetails(flight) };
+    const { localTime, actualTime, destination, stand, gate } = flightDetails;
 
-    const toTimeString = (date: string) => {
-      return new Date(date).toLocaleTimeString('en-GB', {
-        hour: 'numeric',
-        minute: '2-digit',
-      });
-    };
-
-    if (isArrival(flight)) {
-      localTime = flight.timeToStand;
-      destination = flight['airportFromID.city_en'];
-
-      if (status === 'LN') {
-        actualTime = toTimeString(actual);
-      }
-    } else {
-      localTime = flight.timeDepExpectCalc;
-      destination = flight['airportToID.city_en'];
-      stand = flight.checkinNo;
-      gate = flight.gateNo;
-
-      if (flight.timeTakeofFact && status === 'DP') {
-        actualTime = `at ${toTimeString(flight.timeTakeofFact)}`;
-      }
-    }
     const preparedDate = date.split('-').slice(0, 2).join('.');
     const preparedFullDate = date.split('-').join('.');
-    const preparedLocalTime = toTimeString(localTime);
+    const preparedLocalTime = getStringTime(localTime);
     const flightNumber = codeShareData[0].codeShare;
     const flightStatus = `${statusFlight(status)}${
-      actualTime ? ` ${actualTime}, ${preparedFullDate}` : ''
+      actualTime
+        ? `${status === 'DP' ? ' at' : ''} ${actualTime}, ${preparedFullDate}`
+        : ''
     }`;
 
     const flightInfoHeaders = {

@@ -7,6 +7,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { Departure, Arrival } from '../../utils/flightsTypes';
 import Flight from './Flight';
 import './VisibleFlights.scss';
+import { stringifyDate } from '../../helpers';
 // import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const VisibleFlights: FC<ConnectedProps<typeof connector>> = ({
@@ -24,9 +25,8 @@ const VisibleFlights: FC<ConnectedProps<typeof connector>> = ({
       : null;
   const searchParams = new URLSearchParams(location.search);
 
-  const currentDate = new Date().toLocaleDateString().split('.').join('-');
+  const currentDate = stringifyDate(new Date());
   const date = searchParams.get('date') || currentDate;
-  // const preparedDate = date.split('-').reverse().join('-');
 
   useEffect(() => {
     console.log('reload data from:', pathname, ', date:', date);
@@ -52,7 +52,7 @@ const VisibleFlights: FC<ConnectedProps<typeof connector>> = ({
         </thead>
         <tbody>
           {(flights as Array<Arrival | Departure>).map((flight) => (
-            <Flight key={flight.ID} flight={flight} fetching={fetching} />
+            <Flight key={flight.ID} flight={flight} />
           ))}
         </tbody>
       </table>
@@ -60,7 +60,7 @@ const VisibleFlights: FC<ConnectedProps<typeof connector>> = ({
   }
   return (
     <div className="nothing-found">
-      {fetching ? <span>Loading</span> : <span>No flights</span>}
+      {fetching ? <span>Loading...</span> : <span>No flights</span>}
     </div>
   );
 };

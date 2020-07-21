@@ -53,7 +53,7 @@ const SearchField: FC<ConnectedProps<typeof connector>> = ({
         <input
           className="search-field__input"
           type="text"
-          placeholder="Airline, destination or flight #"
+          placeholder="Airline, destination or flight №"
           value={visibleQuery}
           onChange={handleQueryUpdate}
           onKeyDown={(event) => {
