@@ -29,8 +29,6 @@ const VisibleFlights: FC<ConnectedProps<typeof connector>> = ({
   const date = searchParams.get('date') || currentDate;
 
   useEffect(() => {
-    console.log('reload data from:', pathname, ', date:', date);
-
     loadFlights(date, pathname);
     // eslint-disable-next-line
   }, [pathname, date]);

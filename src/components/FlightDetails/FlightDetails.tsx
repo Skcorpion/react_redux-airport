@@ -22,8 +22,6 @@ const FlightDetails: FC<ConnectedProps<typeof connector>> = ({
   const date = searchParams.get('dt') || '';
 
   useEffect(() => {
-    console.log('Load data from:', flightId, ', date:', date);
-
     loadFlight(date, flightId);
     // eslint-disable-next-line
   }, [date, flightId]);

@@ -14,12 +14,12 @@ const store = createStore(
 );
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <HashRouter>
-        <App />
-      </HashRouter>
-    </Provider>
-  </React.StrictMode>,
+  // <React.StrictMode>
+  <Provider store={store}>
+    <HashRouter>
+      <App />
+    </HashRouter>
+  </Provider>,
+  // </React.StrictMode>,
   document.getElementById('root')
 );

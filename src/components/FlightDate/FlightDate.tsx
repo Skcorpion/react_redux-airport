@@ -6,45 +6,50 @@ import { toDateFormat, stringifyDate } from '../../helpers';
 import 'react-datepicker/dist/react-datepicker.css';
 import './FlightDate.scss';
 
-const calendarDate = (date: Date) =>
-  date.toLocaleDateString('en-GB', { month: 'numeric', day: 'numeric' });
+const calendarDate = (date: string) =>
+  toDateFormat(date).toLocaleDateString('en-GB', {
+    month: 'numeric',
+    day: 'numeric',
+  });
 
 function getDateToDateLink(day: number) {
   const date = new Date();
   date.setDate(date.getDate() + day);
 
-  return date;
+  return stringifyDate(date);
 }
 
 const FlightDate: FC = () => {
   const location = useLocation();
   const history = useHistory();
   const searchParams = new URLSearchParams(location.search);
-  const [selectedDate, handleDateChange] = useState(
-    toDateFormat(searchParams.get('date'))
-  );
+  const currentDate = stringifyDate(new Date());
+  const paramsDate = searchParams.get('date') || currentDate;
+  const [selectedDate, handleDateChange] = useState(paramsDate);
 
   useEffect(() => {
-    const date = stringifyDate(selectedDate);
-    const currentDate = stringifyDate(new Date());
-    if (date === currentDate) {
+    handleDateChange(paramsDate);
+    // eslint-disable-next-line
+  }, [paramsDate]);
+
+  useEffect(() => {
+    if (selectedDate === currentDate) {
       searchParams.delete('date');
     } else {
-      searchParams.set('date', date);
+      searchParams.set('date', selectedDate);
     }
+
     history.push({
       search: searchParams.toString(),
     });
     // eslint-disable-next-line
   }, [selectedDate]);
 
-  console.log('selectedDate: ', selectedDate);
-
   return (
     <div className="flights-dates__container">
       <DatePicker
-        selected={selectedDate}
-        onChange={(date: Date) => handleDateChange(date)}
+        selected={toDateFormat(selectedDate)}
+        onChange={(date: Date) => handleDateChange(stringifyDate(date))}
         customInput={
           <div className="flights-calendar__container">
             <div className="flights-calendar__datepicker">
@@ -60,25 +65,25 @@ const FlightDate: FC = () => {
       />
       <div className="flights-dates__list">
         <DateLink
-          selectedDate={selectedDate}
           setSelectedDate={handleDateChange}
           date={getDateToDateLink(-1)}
+          isActive={getDateToDateLink(-1) === selectedDate}
           calendarDate={calendarDate}
         >
           Yesterday
         </DateLink>
         <DateLink
-          selectedDate={selectedDate}
           setSelectedDate={handleDateChange}
           date={getDateToDateLink(0)}
+          isActive={getDateToDateLink(0) === selectedDate}
           calendarDate={calendarDate}
         >
           Today
         </DateLink>
         <DateLink
-          selectedDate={selectedDate}
           setSelectedDate={handleDateChange}
           date={getDateToDateLink(1)}
+          isActive={getDateToDateLink(1) === selectedDate}
           calendarDate={calendarDate}
         >
           Tomorrow

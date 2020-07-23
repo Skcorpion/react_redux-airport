@@ -8,7 +8,7 @@ type Props = {
   flight: Arrival | Departure;
 };
 
-const Flight: FC<Props> = ({ flight }) => {
+const Flight: FC<Props> = React.memo(({ flight }) => {
   const { term, status, codeShareData, airline } = flight;
   const flightDetails = { ...getFlightDetails(flight) };
   const { localTime, actualTime, destination } = flightDetails;
@@ -37,6 +37,6 @@ const Flight: FC<Props> = ({ flight }) => {
       </td>
     </tr>
   );
-};
+});
 
 export default Flight;
