@@ -79,6 +79,10 @@
     border-radius: 0 6px 6px;
     padding: 0 25px 0 20px;
   }
+
+  &__nothing-found {
+    background-color: transparent;
+  }
 }
 
 @media (max-width: 767.98px) {

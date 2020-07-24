@@ -19,6 +19,12 @@ export default (state: IFetchFlight = initialState, action: Actions) => {
         fetching: false,
       };
 
+    case ActionTypes.UNMOUNT_FLIGHT:
+      return {
+        ...state,
+        flight: null,
+      };
+
     default:
       return state;
   }

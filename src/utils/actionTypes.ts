@@ -9,6 +9,7 @@ export enum ActionTypes {
   REQUESTING_FLIGHT = 'REQUESTING_FLIGHT',
   RECEIVED_FLIGHTS = 'RECEIVED_FLIGHTS',
   RECEIVED_FLIGHT = 'RECEIVED_FLIGHT',
+  UNMOUNT_FLIGHT = 'UNMOUNT_FLIGHT',
   SET_FILTERED_QUERY = 'SET_FILTERED_QUERY',
 }
 /*
@@ -30,6 +31,9 @@ interface ReceivedFlightAction {
   type: typeof ActionTypes.RECEIVED_FLIGHT;
   flight: IFlight;
 }
+interface UnmountFlightAction {
+  type: typeof ActionTypes.UNMOUNT_FLIGHT;
+}
 interface SetFilteredQueryAction {
   type: typeof ActionTypes.SET_FILTERED_QUERY;
   filteredQuery: string;
@@ -40,4 +44,5 @@ export type Actions =
   | RequestingFlightAction
   | ReceivedFlightsAction
   | ReceivedFlightAction
+  | UnmountFlightAction
   | SetFilteredQueryAction;

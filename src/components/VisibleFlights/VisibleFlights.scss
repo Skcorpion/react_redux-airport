@@ -15,6 +15,7 @@
   th {
     padding: 0.75rem;
     vertical-align: bottom;
+    font-weight: inherit;
 
     &:first-of-type {
       text-align: center;
@@ -59,6 +60,15 @@
     &.blue span {
       border-color: $main-color;
       color: $main-color;
+    }
+  }
+
+  &__airline-col {
+    display: flex;
+    align-items: center;
+    img {
+      max-width: 63px;
+      margin-right: 5px;
     }
   }
 
@@ -130,8 +140,15 @@
     }
     &__airline-col {
       grid-area: airline;
-      color: #7984b8;
-      font-size: 14px !important;
+      // color: #7984b8;
+      // font-size: 14px !important;
+
+      img {
+        max-width: 40px;
+      }
+      span {
+        display: none;
+      }
     }
     &__flight-col {
       grid-area: flight;
@@ -167,6 +184,9 @@
     padding: 0;
   }
   .flights-table {
+    th {
+      font-weight: 400;
+    }
     &__details-field {
       font-size: 0 !important;
       width: 70px;

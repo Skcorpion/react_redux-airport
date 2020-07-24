@@ -28,7 +28,10 @@ const Flight: FC<Props> = React.memo(({ flight }) => {
       <td className="flights-table__status-col">{`${statusFlight(
         status
       )} ${actualTime}`}</td>
-      <td className="flights-table__airline-col">{airline.en.name}</td>
+      <td className="flights-table__airline-col">
+        <img src={airline.en.logoSmallName} alt={airline.en.name} />
+        <span>{airline.en.name}</span>
+      </td>
       <td className="flights-table__flight-col">
         {codeShareData[0].codeShare}
       </td>

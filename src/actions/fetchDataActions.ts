@@ -46,3 +46,6 @@ export const loadFlight = (date: string, id: string) => {
     dispatch(receivedFlight(flight));
   };
 };
+export const unmountFlight = (): Actions => ({
+  type: ActionTypes.UNMOUNT_FLIGHT,
+});

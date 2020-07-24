@@ -1,8 +1,8 @@
 import React, { FC, useEffect } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { RootState } from '../../utils/interfaces';
-import { loadFlight } from '../../actions';
-import { getFlight } from '../../reducers';
+import { loadFlight, unmountFlight } from '../../actions';
+import { getFlight, getFlightFetching } from '../../reducers';
 import { useLocation, useParams, NavLink } from 'react-router-dom';
 import './FlightDetails.scss';
 import { isArrival, getFlightDetails } from '../../helpers';
@@ -12,7 +12,9 @@ type Params = { direction: string; flightId: string };
 
 const FlightDetails: FC<ConnectedProps<typeof connector>> = ({
   flight,
+  fetching,
   loadFlight,
+  unmountFlight,
 }) => {
   const location = useLocation();
   const params: Params = useParams();
@@ -24,9 +26,12 @@ const FlightDetails: FC<ConnectedProps<typeof connector>> = ({
   useEffect(() => {
     loadFlight(date, flightId);
     // eslint-disable-next-line
+    return () => {
+      unmountFlight();
+    };
   }, [date, flightId]);
 
-  if (flight) {
+  if (flight && !fetching) {
     const { term, status, codeShareData } = flight;
     const flightDetails = { ...getFlightDetails(flight) };
     const { localTime, actualTime, destination, stand, gate } = flightDetails;
@@ -87,11 +92,16 @@ const FlightDetails: FC<ConnectedProps<typeof connector>> = ({
       </div>
     );
   }
-  return <p>Loading...</p>;
+  return (
+    <div className="flight__nothing-found nothing-found">
+      <span>Loading...</span>
+    </div>
+  );
 };
 
 const mapStateToProps = (state: RootState) => ({
   flight: getFlight(state),
+  fetching: getFlightFetching(state),
 });
-const connector = connect(mapStateToProps, { loadFlight });
+const connector = connect(mapStateToProps, { loadFlight, unmountFlight });
 export default connector(FlightDetails);
