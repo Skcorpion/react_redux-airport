@@ -6,9 +6,7 @@ import './HomePage.scss';
 const Home = () => {
   return (
     <>
-      <div className="bg">
-        <div className="blur"></div>
-      </div>
+      <div className="bg"></div>
       <div className="home">
         <div className="container home__container">
           <SearchField>
