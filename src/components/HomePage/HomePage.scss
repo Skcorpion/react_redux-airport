@@ -28,6 +28,10 @@
       border-radius: 0px 6px 6px 6px;
     }
   }
+
+  .search-field__title {
+    color: #fff;
+  }
 }
 
 @media (max-width: 767.98px) {
@@ -55,15 +59,7 @@
     }
   }
 }
-@media (min-width: 768px) {
-  .home {
-    &__container {
-      .search-field__title {
-        text-align: center;
-      }
-    }
-  }
-}
+
 @media (min-width: 992px) {
   .home {
     .direction-tabs {
