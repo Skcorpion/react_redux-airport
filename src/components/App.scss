@@ -54,8 +54,28 @@ table {
   flex-direction: column;
 }
 .wrapper-container {
+  position: relative;
   padding-top: 50px;
   flex: 1 0 auto;
+}
+
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: url(../assets/plane-bg.jpg) no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  z-index: -1;
+}
+.blur {
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
 }
 
 @media (min-width: 576px) {

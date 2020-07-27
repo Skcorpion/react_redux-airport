@@ -5,16 +5,23 @@ import './HomePage.scss';
 
 const Home = () => {
   return (
-    <div className="home">
-      <div className="container home__container">
-        <SearchField>
-          <div className="home__direction-tabs direction-tabs">
-            <DirectionLink direction="departures">all departures</DirectionLink>
-            <DirectionLink direction="arrivals">all arrivals</DirectionLink>
-          </div>
-        </SearchField>
+    <>
+      <div className="bg">
+        <div className="blur"></div>
       </div>
-    </div>
+      <div className="home">
+        <div className="container home__container">
+          <SearchField>
+            <div className="home__direction-tabs direction-tabs">
+              <DirectionLink direction="departures">
+                all departures
+              </DirectionLink>
+              <DirectionLink direction="arrivals">all arrivals</DirectionLink>
+            </div>
+          </SearchField>
+        </div>
+      </div>
+    </>
   );
 };
 
