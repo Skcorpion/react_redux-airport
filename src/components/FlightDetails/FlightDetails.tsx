@@ -25,10 +25,11 @@ const FlightDetails: FC<ConnectedProps<typeof connector>> = ({
 
   useEffect(() => {
     loadFlight(date, flightId);
-    // eslint-disable-next-line
+
     return () => {
       unmountFlight();
     };
+    // eslint-disable-next-line
   }, [date, flightId]);
 
   if (flight && !fetching) {

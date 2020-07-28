@@ -83,12 +83,17 @@
   }
 }
 
-.list-leave-active,
-.list-enter-active {
+.list-exit,
+.list-enter-done {
   transition: all 1s;
 }
 
-.list-leave-to {
+.list-exit-active {
+  transform: translateY(25px);
+  opacity: 0;
+}
+
+.list-enter-active {
   transform: translateY(25px);
   opacity: 0;
 }

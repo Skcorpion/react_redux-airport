@@ -15,7 +15,7 @@ const Flight: FC<Props> = React.memo(({ flight }) => {
   const preparedLocalTime = getStringTime(localTime);
 
   return (
-    <tr>
+    <>
       <td
         className={classNames('flights-table__terminal-col', {
           blue: term === 'D',
@@ -38,7 +38,7 @@ const Flight: FC<Props> = React.memo(({ flight }) => {
       <td className="flights-table__details-field">
         <FlightDetailsLink flightId={flight.ID} />
       </td>
-    </tr>
+    </>
   );
 });
 

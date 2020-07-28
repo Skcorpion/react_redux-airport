@@ -8,7 +8,7 @@ import { Departure, Arrival } from '../../utils/flightsTypes';
 import Flight from './Flight';
 import './VisibleFlights.scss';
 import { stringifyDate } from '../../helpers';
-// import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const VisibleFlights: FC<ConnectedProps<typeof connector>> = ({
   flights,
@@ -48,11 +48,19 @@ const VisibleFlights: FC<ConnectedProps<typeof connector>> = ({
         <thead>
           <tr>{thList}</tr>
         </thead>
-        <tbody>
+        <TransitionGroup component={'tbody'}>
           {(flights as Array<Arrival | Departure>).map((flight) => (
-            <Flight key={flight.ID} flight={flight} />
+            <CSSTransition
+              key={flight.ID}
+              classNames="list"
+              timeout={{ enter: 200, exit: 500 }}
+            >
+              <tr>
+                <Flight flight={flight} />
+              </tr>
+            </CSSTransition>
           ))}
-        </tbody>
+        </TransitionGroup>
       </table>
     );
   }
@@ -62,17 +70,6 @@ const VisibleFlights: FC<ConnectedProps<typeof connector>> = ({
     </div>
   );
 };
-
-// Need todo
-{
-  /* <TransitionGroup>
-  <CSSTransition
-    key={flight.ID}
-    classNames="list"
-    timeout={{ enter: 500, exit: 300 }}
-  ></CSSTransition>
-</TransitionGroup> */
-}
 
 const mapStateToProps = (state: RootState) => ({
   flights: getVisibleFlights(state),
