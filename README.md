@@ -1,6 +1,6 @@
 # React Airport
 
-[DEMO LINK](https://skcorpion.github.io/react_redux-airport/#/arrivals)
+[DEMO LINK (it worked in better life)](https://skcorpion.github.io/react_redux-airport/#/arrivals)
 
 ## Description
 
